@@ -31,10 +31,7 @@
     <plugin name="cordova-plugin-statusbar" source="npm" spec="~2.1.2" />
     <plugin name="cordova-plugin-vibration" source="npm" spec="~2.1.0" />
     <plugin name="cordova-plugin-whitelist" source="npm" spec="~1.2.1" />
-    <icon height="48" src="images/android-icon-48x48.jpg" width="48"/>
-    <icon height="48" platform="android" src="www/images/android-icon-48x48.jpg" width="48"/>
-    <icon height="48" platform="ios" src="www/images/android-icon-48x48.jpg" width="48"/>
-    <icon height="48" platform="windows" src="www/images/android-icon-48x48.jpg" width="48"/>
+    <icon height="48" src="www/android-icon-48x48.jpg" width="48"/>
     <preference name = "SplashScreen" value = "screen" />
     <preference name = "SplashScreenDelay" value = "0" />
     <splash platform="android" qualifier="port-ldpi" src="www/res/screen/android/screen-ldpi-portrait.png" />

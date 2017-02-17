@@ -19,14 +19,14 @@
 
 <body>
     <h1>Welcome to conestoga trade</h1>
-    <input type="button" id="signup" value="Register" onclick="showsignup()"><br>
-    <input type="button" id="signin" value="Sign In" onclick="showsignin()"><br>
-    <input type="button" id="post" value="Make a Post" onclick="showpost()"><br>
-    <input type="button" id="homepage" value="Go to homepage" onclick="openhomepage()"><br>
+    <input type="button" id="signup" value="Register" onclick="showsignup()"><br><br>
+    <input type="button" id="signin" value="Sign In" onclick="showsignin()"><br><br>
+    <input type="button" id="post" value="Make a Post" onclick="showpost()"><br><br>
+    <input type="button" id="homepage" value="Go to homepage" onclick="openhomepage()"><br><br>
     <input type="button" id="scan" value="Scan Barcode" onclick="openscanner()"><br><br><br>
 
     <div id="signuppage">
-<form onsubmit="return validateEmail();" method="post" id="registernew">
+<form method="post" id="registernew">
 Username: <input type="text" name="username"><br><br>
 Email: <input type="text" id = "email" name="email" required><br><br>
 Password: <input type="password" name="password"><br><br>
@@ -44,7 +44,7 @@ Password: <input type="password" name="password"><br><br>
     </div>
 
     <div id="postpage">
-     <form method="POST" onsubmit="return validate();" id="postman" enctype="multipart/form-data">
+     <form method="POST" id="postman" enctype="multipart/form-data">
     Title: <input type="text" name="title" id="title"> <span id="title_error"></span><br><br>
     Price: <input type="text" name="price" id="price"> <span id="price_error"></span><br><br>
     Ur Contact: <input type="text" name="contact" id="contact"> <span id="contact_error"></span><br><br>
