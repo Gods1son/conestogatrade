@@ -1,20 +1,23 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget
-        id="com.phonegap.NaijaMascoteer"
+        id="com.phonegap.conestogatrade"
         version="1.0.0"
         xmlns="http://www.w3.org/ns/widgets"
         xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>9ja Mascots</name>
+    <name>Conestoga trade</name>
     <description>
-        How many celebrities do you know in 9ja
+        Make your postings for conestoga college
     </description>
     <author email="tolulopeibiyode@gmail.com" href="#">
-        Gods1son and @tundetash
+        Gods1son and capstone team
     </author>
     <preference name="orientation" value="portrait"/>
     <preference name="SplashScreen" value="screen"/>
     <preference name="permissions" value="none"/>
     <plugin name="cordova-plugin-splashscreen" source="npm" />
+    <plugin name="cordova-plugin-inappbrowser" source="npm"/>
+    <gap:plugin name="phonegap-plugin-barcodescanner" source="npm" />
+    <preference name="android-build-tool" value="gradle" />
     <content src="index.html" />
     <icon height="48" src="images/android-icon-48x48.jpg" width="48"/>
     <icon height="48" platform="android" src="images/android-icon-48x48.jpg" width="48"/>

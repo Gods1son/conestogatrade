@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang = "en">
 <head>
-<title>Mascots</title>
+<title>Conestoga trade</title>
 <meta name="format-detection" content="telephone=no" />
 <meta name="msapplication-tap-highlight" content="no" />
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -11,109 +11,53 @@
 <link rel="icon" type="image/png" sizes="16x16" href="android-icon-96x96.png">
 <link rel="icon" href="favicon.ico">
 <link rel="manifest" href="manifest.json">
-<link rel="stylesheet" href="hopscotch.css">
-<link rel="stylesheet" href="gamecss.css">
+<link rel="stylesheet" href="indexcss.css">
 <script type = "text/javascript"  src = "jquery-3.1.1.js"></script>
 <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
-<script src="hopscotch.js"></script>
-<script src ="gametwo.js"></script>
+<script src ="indexjs.js"></script>
 </head>
 
-<header id="headmaster">
-
-     <div id="mySidenav" class="sidenav">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"><span id="menuname">Made in 9ja</span> &times;</a>
-    <button class="accordion" onclick="openAccord()">Settings</button>
-<div class="panel">
-<div>
-	<input type="checkbox" id="switch1" name="switch1" class="switch" onchange="sounding()" checked />
-	<label for="switch1"><b>Sound</b></label><br><br>
-</div><div>
-	<input type="checkbox" id="darktheme" name="darktheme" onchange="darktheme()" style="zoom:1.2"/>
-	<label for="darktheme"><b>Dark Theme</b></label><br>
-</div>
-</div>
-  <button class="accordion" onclick="openAccord()">Instruction</button>
-            <div class="panel" id="instruct">
-  <p>Do you know the person in the picture. Type the name with the buttons at the bottom of the screen. click on the button in the middle if u make a mistake to take the letter off. If you get hooked, use the help! button to find clue, u will find links to know more about celebs on the left menu bar.</p>
-</div>
- <button class="accordion" onclick="openAccord()">Links about celebs</button>
-<div class="panel">
-  <div id="faceslinks">
-      <p id="faceslinkss"> </p>
-    </div>
-</div>
-<button class="accordion" onclick="openAccord()">Developers</button>
-<div class="panel">
-  <p>Created by Gods1son and Tundetash</p>
-    <p>©2017</p>
-</div>
- <button class="accordion" onclick="openAccord()">Appreciation</button>
-<div class="panel">
-  <p>Enjoy the game and tell your friends about it. Let us rep 9ja</p>
-</div>
-
-</div>
-<!--include video here-->
-<div id="videoholder">
-<img src="loading.gif" id="videoopen">
-</div>
-<span id="menubar" onclick="openNav()">&#9776; Menu</span>
-<!--<h1 id="tophead">Naija Mascots</h1>--><div id="rightscore"><img src="images/coin.png" width="5%"> <span id="score" class="result1">0</span></div>
-<div id="ish">
-     <span class="label">Level:</span> <span id="level" class="result">1</span><span class="label"> Stage:</span> <span id="stage" class="result">1</span></div>
-</header>
-
 <body>
-<button id="myBtn">Open Modal</button>
+    <h1>Welcome to conestoga trade</h1>
+    <input type="button" id="signup" value="Register" onclick="showsignup()"><br>
+    <input type="button" id="signin" value="Sign In" onclick="showsignin()"><br>
+    <input type="button" id="post" value="Make a Post" onclick="showpost()"><br>
+    <input type="button" id="homepage" value="Go to homepage" onclick="openhomepage()"><br>
+    <input type="button" id="scan" value="Scan Barcode" onclick="openscanner()"><br><br><br>
 
-<!-- The Modal -->
-<div id="myModal" class="modal">
-
-  <!-- Modal content -->
-  <div class="modal-content">
-    <div class="modal-header">
-      <marquee direction="right"><h2>Naija Mascots</h2></marquee>
-    </div>
-    <div class="modal-body">
-      <p><h2><span id="commenter"></span></h2></p>
-      <img src="images/mark.gif" width="100%">
-    </div>
-    <div class="modal-footer">
-      <span class="close">continue</span>
-      <h1>...</h1>
-
-
-    </div>
-  </div>
-
-</div>
-<!--adding images linking post-->
-
-
-<!--<input type="button" id="research" value="Click to know more about him/her" onclick="openLink()">-->
-<div id="imgholder"><img id="images">
-    <div id="sociallinks">
-        <img src="images/facebook2.png" width="90%" onclick="window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint('Hello, do you play Naija Masctos, It is a very cool and educative game', null /* img */, null /* url */, 'Please long press on your screen and select paste to share. Thanks',null,null)"><br>
-        <img src="images/Whatsappmain.png" width="90%" onclick="window.plugins.socialsharing.shareViaWhatsApp('Hello, do you play Naija Masctos, It is a very cool and educative game')"><br>
-        <img src="images/Twitter.png" width="90%" onclick="window.plugins.socialsharing.shareViaTwitter('Hello, do you play Naija Masctos, It is a very cool and educative game')"><br>
-        <img src="images/sms.png" width="90%" onclick="window.plugins.socialsharing.shareViaSMS('Hello, do you play Naija Masctos, It is a very cool and educative game')">
-    </div>
-    </div><br>
-    <!--TRYING THE CLICKABLE BUTTONS-->
-<div id="clickable">
-
-</div>
-
-    <div id="options">
-    <p><div><input type="button" id="0" class="entry"></div><div><input type="button" id="1" class="entry"></div><div><input type="button" id="2"  class="entry"></div><div><input type="button" id="3"  class="entry"></div><div><input type="button" id="4"  class="entry"></div><div><input type="button" id="5" class="entry"></div><div><input type="button" id="6" class="entry"></div></p><br>
-    <p><div><input type="button" id="7" class="entry"></div><div><input type="button" id="8" class="entry"></div><div><input type="button" id="9" class="entry"></div><div><input type="button" id="10" class="entry"></div><div><input type="button" id="11" class="entry"></div><div><input type="button" id="12" class="entry"></div><div><input type="button" id="13" class="entry"></div></p><br>
+    <div id="signuppage">
+<form onsubmit="return validateEmail();" method="post" id="registernew">
+Username: <input type="text" name="username"><br><br>
+Email: <input type="text" id = "email" name="email" required><br><br>
+Password: <input type="password" name="password"><br><br>
+Enter Password Again: <input type="password" name="passwordtwo"><br><br>
+<input type="submit">
+</form>
     </div>
 
-<div class="controller">
-<p><button onclick="helperMan()" id="hinter">Help!</button> <span id="help"></span></p>
-</div>
-<span id="result"></span><br>
-<audio loop="loop" src="Emeka.mp3" id="music"></audio>
+    <div id="signinpage">
+    <form action="" method="post">
+Email: <input type="text" id = "email" name="email" required><br><br>
+Password: <input type="password" name="password"><br><br>
+<input type="submit">
+    </form>
+    </div>
+
+    <div id="postpage">
+     <form method="POST" onsubmit="return validate();" id="postman" enctype="multipart/form-data">
+    Title: <input type="text" name="title" id="title"> <span id="title_error"></span><br><br>
+    Price: <input type="text" name="price" id="price"> <span id="price_error"></span><br><br>
+    Ur Contact: <input type="text" name="contact" id="contact"> <span id="contact_error"></span><br><br>
+    Description: <textarea rows="3" id="description" name="description"></textarea> <span id="description_error"></span><br><br>
+    <span style="display:none;">Qr Code: <input type="text" id="code" name="code"><br><br></span>
+    Upload pics: <input type="file" name="file" id="fileToUpload"><br><br>
+    <input type="submit" value="Post It" id="submit">
+    </form>
+    </div>
+
+    <div id="registerresponse" style="display:none" >
+    <b>Thank you for registering with us. Cheers</b>
+    </div>
+
 </body>
 </html>
