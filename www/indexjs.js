@@ -216,8 +216,12 @@ $("#postman").submit(function(e)
 }
 
 function registerman(){
-$("#registernew").submit(function(e)
-{
+        var email = document.getElementById("email").value;
+    var re = /^\s*[\w\-\+_]+(\.[\w\-\+_]+)*\@[\w\-\+_]+\.[\w\-\+_]+(\.[\w\-\+_]+)*\s*$/;
+    if (re.test(email)) {
+        if (email.indexOf('@conestogac.on.ca', email.length - '@conestogac.on.ca'.length) !== -1) {
+            $("#registernew").submit(function(e)
+                                     {
     var postData = $("#registernew").serialize();
     var formURL = "http://ec2-34-198-155-79.compute-1.amazonaws.com/signuptest.php";
     $.ajax(
@@ -240,6 +244,14 @@ $("#registernew").submit(function(e)
 
 });
 //$("#postman").submit(); //Submit  the FORM
+        } else {
+            alert('Email must be a conestoga e-mail address (your.name@conestoga.on.ca).');
+		return false;
+        }
+    } else {
+        alert('Not a valid e-mail address.');
+		return false;
+    }
 }
 
 function submitted(){
