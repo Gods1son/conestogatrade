@@ -67,6 +67,21 @@ function showpost(){
 
 //sending to the server for sign up
  $(document).ready(function() {
+          //handling sign-in
+        /*  $("#signin").submit(function(event) {
+                        document.getElementById("post").style.display = "block";
+                        event.preventDefault();
+            //url: "http://ec2-34-198-155-79.compute-1.amazonaws.com/signintest.php",
+              var xhr = new XMLHttpRequest();
+xhr.open("POST", "http://ec2-34-198-155-79.compute-1.amazonaws.com/signintest.php", true);
+xhr.onreadystatechange = function() {
+  if (xhr.readyState == 4) {
+    // innerText does not let the attacker inject HTML elements.
+    document.getElementById("resp").innerText = xhr.responseText;
+  }
+}
+xhr.send();
+            }); */
      //handling registration
             $("#registernew").submit(function() {
                     var email = document.getElementById("email").value;
@@ -124,7 +139,7 @@ function showpost(){
                         document.getElementById("signuppage").style.display = "none";
                         document.getElementById("signinpage").style.display = "none";
                         document.getElementById("postpage").style.display = "none";
-                        alert("Succesful");
+                      //  alert("Succesful");
                     //Send the serialized data to mailer.php.
                         $.post("http://ec2-34-198-155-79.compute-1.amazonaws.com/savepost.php", $("#postman").serialize(),
                     //Take our repsonse, and replace whatever is in the "formResponse"
@@ -153,4 +168,112 @@ function openscanner(){
       function (error) {
           alert("Scanning failed: " + error);
       });
+}
+       /*   $("#signin").submit(function(event) {
+                        document.getElementById("post").style.display = "block";
+                        event.preventDefault();
+            //url: "http://ec2-34-198-155-79.compute-1.amazonaws.com/signintest.php",
+              var xhr = new XMLHttpRequest();
+xhr.open("POST", "http://ec2-34-198-155-79.compute-1.amazonaws.com/signintest.php", true);
+xhr.onreadystatechange = function() {
+  if (xhr.readyState == 4) {
+    // innerText does not let the attacker inject HTML elements.
+    document.getElementById("resp").innerText = xhr.responseText;
+  }
+}
+xhr.send();
+            }); */
+
+function posted(){
+$("#postman").submit(function(e)
+{
+    var postData = $("#postman").serialize();
+    var formURL = "http://ec2-34-198-155-79.compute-1.amazonaws.com/savepost.php";
+    $.ajax(
+    {
+        url : formURL,
+        type: "POST",
+        data : postData,
+        success:function(data, textStatus, jqXHR)
+        {
+            //data: return data from server
+            $("#resp").html(data);
+            document.getElementById("title").value = "";
+            document.getElementById("price").value = "";
+            document.getElementById("contact").value = "";
+            document.getElementById("description").value = "";
+        },
+        error: function(jqXHR, textStatus, errorThrown)
+        {
+            //if fails
+        }
+    });
+    e.preventDefault(); //STOP default action
+   // e.unbind(); //unbind. to stop multiple form submit.
+
+});
+//$("#postman").submit(); //Submit  the FORM
+}
+
+function registerman(){
+$("#registernew").submit(function(e)
+{
+    var postData = $("#registernew").serialize();
+    var formURL = "http://ec2-34-198-155-79.compute-1.amazonaws.com/signuptest.php";
+    $.ajax(
+    {
+        url : formURL,
+        type: "POST",
+        data : postData,
+        success:function(data, textStatus, jqXHR)
+        {
+            //data: return data from server
+            alert(data);
+        },
+        error: function(jqXHR, textStatus, errorThrown)
+        {
+            //if fails
+        }
+    });
+    e.preventDefault(); //STOP default action
+   // e.unbind(); //unbind. to stop multiple form submit.
+
+});
+//$("#postman").submit(); //Submit  the FORM
+}
+
+function submitted(){
+$("#signin").submit(function(e)
+{
+    var uname=$("#email").val();
+    var pwd=$("#password").val();
+    var postData = $("#signin").serialize();
+    var formURL = "http://ec2-34-198-155-79.compute-1.amazonaws.com/signintest.php";
+    $.ajax(
+    {
+        url : formURL,
+        type: "POST",
+        data : postData,
+        success:function(data, textStatus, jqXHR)
+        {
+            //data: return data from server
+            //$("#resp").html(data);
+            //preventDefault();
+                            if(data == "success"){
+                    alert("Login Success!!");
+                } else {
+                    alert("Invalid Login!!");
+                }
+        },
+        error: function(jqXHR, textStatus, errorThrown)
+        {
+            //if fails
+            $("#resp").html(textStatus);
+        }
+    });
+    e.preventDefault(); //STOP default action
+   // e.unbind(); //unbind. to stop multiple form submit.
+
+});
+$("#signin").submit(); //Submit  the FORM
 }
