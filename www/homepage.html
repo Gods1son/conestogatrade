@@ -1,0 +1,118 @@
+<html>
+  <head>
+    <script type = "text/javascript"  src = "jquery-3.1.1.js"></script>
+      <style>
+          div {
+              border: 1px solid blue;
+              margin-bottom: 5px;
+              line-height: 1.5px;
+              padding:10px 10px 10px 10px;
+              overflow: auto;
+              height: 100px;
+          }
+
+          div img {
+              float:left;
+              margin-right: 10px;
+              height: 100%;
+          }
+
+          div p {
+              font-weight: 500;
+          }
+      </style>
+  </head>
+  <body>
+
+  <!-------------------------------------------------------------------------
+  1) Create some html content that can be accessed by jquery
+  -------------------------------------------------------------------------->
+  <h2> Welcome to Conestoga Trade </h2>
+  <h3>Posts by students </h3>
+      <a href="index.html">Main menu</a>
+  <script id="source" language="javascript" type="text/javascript">
+$(document).ready(function() {
+   /*$.ajax({
+        url: "http://ec2-34-198-155-79.compute-1.amazonaws.com/json.php",
+        type: "POST",
+        crossDomain: true,
+        data: "id",
+        dataType: "jsonp",
+        success:function(result){
+            alert(result);
+        },
+        error:function(xhr,status,error){
+            alert(status);
+        }
+    });*/
+                                 $.post("http://ec2-34-198-155-79.compute-1.amazonaws.com/json.php", function (result) {
+
+                    var obj = JSON.parse(result);
+                                for (var i = 0; i < obj.length; i++){
+                                    //dynamically add text
+                                    var postdiv = document.createElement("div");
+
+                                    //dynamically add images
+                                    var images = document.createElement("img");
+                                    images.setAttribute("src", obj[i].postimage);
+                                    images.setAttribute("width", "100px");
+                                    postdiv.appendChild(images);
+
+                                    //dynamically add title
+                                    var title = document.createElement("p");
+                                    var titletext = document.createTextNode(obj[i].title);
+                                    title.appendChild(titletext);
+                                    postdiv.appendChild(title);
+                                    //document.body.appendChild(title);
+
+                                    //dynamically add price
+                                    var price = document.createElement("p");
+                                    var pricetext = document.createTextNode(obj[i].price);
+                                    price.appendChild(pricetext);
+                                    postdiv.appendChild(price);
+
+                                    //dynamically add contact
+                                    var contact = document.createElement("p");
+                                    var contacttext = document.createTextNode(obj[i].contact);
+                                    contact.appendChild(contacttext);
+                                    postdiv.appendChild(contact);
+
+
+
+                                    //dynamically add description
+                                    var description = document.createElement("p");
+                                    var descriptiontext = document.createTextNode(obj[i].description);
+                                    description.appendChild(descriptiontext);
+                                    postdiv.appendChild(description);
+
+                                    //
+                                    /*//dynamically add images
+                                    var images = document.createElement("img");
+                                    images.setAttribute("src", obj[i].postimage);
+                                    images.setAttribute("width", "100px");
+                                    postdiv.appendChild(images);*/
+
+                                    // attach the div to the body
+                                    document.body.appendChild(postdiv);
+
+
+                                   /* titleP.innerHTML = titleP.innerHTML + obj[i].title + "<br>";
+                                    priceP.innerHTML = priceP.innerHTML + obj[i].price + "<br>";
+                                    contactP.innerHTML = contactP.innerHTML + obj[i].contact + "<br>";
+                                    descriptionP.innerHTML = descriptionP.innerHTML + obj[i].description + "<br>";
+                                    imageP.innerHTML = imageP.innerHTML + obj[i].postimage + "<br>";*/
+                                }
+
+                                 }
+                );
+    });
+
+
+  </script>
+      <p id="title"></p>
+      <p id="price"></p>
+      <p id="contact"></p>
+      <p id="description"></p>
+      <img id="image" width="100px">
+  </body>
+</html>
