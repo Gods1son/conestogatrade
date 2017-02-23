@@ -17,7 +17,8 @@ $("#searching").submit(function(e)
         success:function(data, textStatus, jqXHR)
         {
             //data: return data from server
-             document.getElementById("whatever").innerHTML = data;
+           //  document.getElementById("whatever").innerHTML = data;
+            $("#whatever").html(data);
                 var other = document.getElementsByTagName('a')[1];
                 other.text = "";
            // document.getElementById("title").value = "";
@@ -37,3 +38,4 @@ $("#searching").submit(function(e)
 });
 //$("#searching").submit(); //Submit  the FORM
 }
+
