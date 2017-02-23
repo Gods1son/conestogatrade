@@ -212,34 +212,6 @@ function posted(){
 $("#postman").submit(function(e)
 {
     var postData = $("#postman").serialize();
-    //trying to post image to bucket cloud
-        function uploadPhoto(imageURI) {
-        var options = new FileUploadOptions();
-        options.fileKey="file";
-        options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
-        options.mimeType="text/plain";
-
-        var params = new Object();
-
-        options.params = params;
-
-        var ft = new FileTransfer();
-        ft.upload(imageURI, encodeURI("http://uploadedpostimages.s3.amazonaws.com/"), win, fail, options);
-    }
-
-        function win(r) {
-       // console.log("Code = " + r.responseCode);
-        //console.log("Response = " + r.response);
-        //console.log("Sent = " + r.bytesSent);
-    }
-
-    function fail(error) {
-        //alert("An error has occurred: Code = " + error.code);
-        //console.log("upload error source " + error.source);
-        //console.log("upload error target " + error.target);
-    }
-    //end of upload image
-    var postData = $("#postman").serialize();
     var formURL = "http://ec2-34-198-155-79.compute-1.amazonaws.com/savepost.php";
     $.ajax(
     {
@@ -336,9 +308,36 @@ $("#signin").submit(function(e)
 //function to load upload
 function chooseimage(){
         navigator.camera.getPicture(uploadPhoto,
-                                    function(message) { alert('get picture failed'); },
+                                    function(message) { alert(message); },
                                     { quality: 50,
                                     destinationType: navigator.camera.DestinationType.FILE_URI,
                                     sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY }
                                     );
 }
+    //trying to post image to bucket cloud
+        function uploadPhoto(imageURI) {
+        var options = new FileUploadOptions();
+        options.fileKey="file";
+        options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+        options.mimeType="text/plain";
+
+        var params = new Object();
+
+        options.params = params;
+
+        var ft = new FileTransfer();
+        ft.upload(imageURI, encodeURI("http://uploadedpostimages.s3.amazonaws.com/"), win, fail, options);
+    }
+
+        function win(r) {
+       // console.log("Code = " + r.responseCode);
+        //console.log("Response = " + r.response);
+        //console.log("Sent = " + r.bytesSent);
+    }
+
+    function fail(error) {
+        //alert("An error has occurred: Code = " + error.code);
+        //console.log("upload error source " + error.source);
+        //console.log("upload error target " + error.target);
+    }
+    //end of upload image
