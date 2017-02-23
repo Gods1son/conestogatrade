@@ -15,7 +15,7 @@
     <preference name="SplashScreen" value="screen"/>
     <preference name="permissions" value="none"/>
     <plugin name="cordova-plugin-splashscreen" source="npm" />
-    <plugin name="cordova-plugin-camera" source="npm"/>
+    <gap:plugin name="cordova-plugin-camera" source="npm"/>
     <plugin name="cordova-plugin-inappbrowser" source="npm"/>
     <gap:plugin name="phonegap-plugin-barcodescanner" source="npm" />
     <preference name="android-build-tool" value="gradle" />

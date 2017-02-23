@@ -319,7 +319,7 @@ function chooseimage(){
         var options = new FileUploadOptions();
         options.fileKey="file";
         options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
-        options.mimeType="text/plain";
+        options.mimeType="image/jpeg";
 
         var params = new Object();
 
