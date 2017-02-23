@@ -322,7 +322,7 @@ function chooseimage(){
 
                              // send the data
                              $.post(url, params, function(data) {
-                                   //  alert('sent');
+                                     alert('sent');
                                      // Display the selected image on send complete
                                     // $('#image').attr('src', 'data:image/jpeg;base64,' + params['image']);
                              });
