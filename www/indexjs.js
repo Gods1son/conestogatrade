@@ -64,6 +64,15 @@ function showpost(){
     document.getElementById("signinpage").style.display = "none";
     document.getElementById("postpage").style.display = "block";
 }
+//open homepage on app
+function homepagehere(){
+    window.location = "homepage.html";
+}
+
+//open search on app
+function searchhere(){
+    window.location = "search.html";
+}
 
 //sending to the server for sign up
  $(document).ready(function() {

@@ -2,10 +2,13 @@
   <head>
     <script type = "text/javascript"  src = "jquery-3.1.1.js"></script>
       <style>
+          body {
+              background-color: aquamarine;
+          }
           div {
               border: 1px solid blue;
               margin-bottom: 5px;
-              line-height: 1.5px;
+              line-height: 6px;
               padding:10px 10px 10px 10px;
               overflow: auto;
               height: 100px;
@@ -18,6 +21,7 @@
           }
 
           div p {
+              font-size: 1.1em;
               font-weight: 500;
           }
       </style>
@@ -60,20 +64,20 @@ $(document).ready(function() {
 
                                     //dynamically add title
                                     var title = document.createElement("p");
-                                    var titletext = document.createTextNode(obj[i].title);
+                                    var titletext = document.createTextNode("Title: " + obj[i].title);
                                     title.appendChild(titletext);
                                     postdiv.appendChild(title);
                                     //document.body.appendChild(title);
 
                                     //dynamically add price
                                     var price = document.createElement("p");
-                                    var pricetext = document.createTextNode(obj[i].price);
+                                    var pricetext = document.createTextNode("Price: " + obj[i].price);
                                     price.appendChild(pricetext);
                                     postdiv.appendChild(price);
 
                                     //dynamically add contact
                                     var contact = document.createElement("p");
-                                    var contacttext = document.createTextNode(obj[i].contact);
+                                    var contacttext = document.createTextNode("Contact: " + obj[i].contact);
                                     contact.appendChild(contacttext);
                                     postdiv.appendChild(contact);
 
@@ -81,7 +85,7 @@ $(document).ready(function() {
 
                                     //dynamically add description
                                     var description = document.createElement("p");
-                                    var descriptiontext = document.createTextNode(obj[i].description);
+                                    var descriptiontext = document.createTextNode("Description: " + obj[i].description);
                                     description.appendChild(descriptiontext);
                                     postdiv.appendChild(description);
 

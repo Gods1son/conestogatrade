@@ -3,15 +3,19 @@
     <title>Search Page</title>
     <script type = "text/javascript"  src = "jquery-3.1.1.js"></script>
   <script src ="searchjs.js"></script>
-
+  <style>
+      body {
+          background-color: bisque;
+      }
+    </style>
 </head>
 <body>
     <div id="searchbar">
     <form id="searching" method="post" onsubmit="searchman()">
-        <input type="text" id="search" name="search" required><br>
+        <input type="text" id="search" name="search" required>
         <input type="submit" onclick="return searchman();">
     </form>
-    <a href="index.html">Back to main menu</a>
+    <a href="index.html" id="linkman">Back to main menu</a>
     </div>
 
     <div id="whatever">

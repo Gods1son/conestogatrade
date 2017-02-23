@@ -24,9 +24,12 @@
     <input type="button" id="homepage" value="Go to homepage" onclick="openhomepage()"><br><br>
     <input type="button" id="scan" value="Scan Barcode" onclick="openscanner()"><br><br>
     <input type="button" id="post" value="Make a Post" onclick="showpost()"><br><br>
-    <a href="homepage.html">View homepage here</a><br><br>
+    <input type="button" id="homepagehere" value="Homepage Here" onclick="homepagehere()"><br><br>
+    <input type="button" id="searchhere" value="Search Here" onclick="searchhere()"><br><br>
+
 
 <div id="signuppage">
+    <h2>Sign up form below</h2>
 <form method="post" id="registernew" onsubmit="registerman()">
 Username: <input type="text" name="username"><br><br>
 Email: <input type="text" id = "email" name="email" required><br><br>
@@ -37,6 +40,7 @@ Enter Password Again: <input type="password" name="passwordtwo"><br><br>
 </div>
 
     <div id="signinpage">
+        <h2>Sign in below</h2>
     <form id="signin" method="post" onsubmit="submitted()">
 Email: <input type="text" id="email" name="email" required><br><br>
 Password: <input type="password" name="password" id="password"><br><br>
@@ -45,6 +49,7 @@ Password: <input type="password" name="password" id="password"><br><br>
     </div>
 
 <div id="postpage">
+    <h2>Fill form below to post</h2>
      <form method="POST" id="postman" enctype="multipart/form-data" onsubmit="posted()">
     Title: <input type="text" name="title" id="title"> <span id="title_error"></span><br><br>
     Price: <input type="text" name="price" id="price"> <span id="price_error"></span><br><br>

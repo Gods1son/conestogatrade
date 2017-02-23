@@ -1,5 +1,6 @@
        $(document).ready(function() {
-
+         //  var other = document.getElementsByTagName('a')[1];
+        //   other.text = "whatevre";
 
        });
     function searchman(){
@@ -17,6 +18,8 @@ $("#searching").submit(function(e)
         {
             //data: return data from server
              document.getElementById("whatever").innerHTML = data;
+                var other = document.getElementsByTagName('a')[1];
+                other.text = "";
            // document.getElementById("title").value = "";
         //    document.getElementById("price").value = "";
           //  document.getElementById("contact").value = "";

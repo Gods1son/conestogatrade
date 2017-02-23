@@ -1,9 +1,13 @@
+body {
+    background-color: darksalmon;
+}
+
 #signuppage  {
     display: none;
 }
 
 #signinpage  {
-    display: block;
+    display: none;
 }
 
 #postpage  {
