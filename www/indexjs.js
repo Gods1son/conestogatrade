@@ -316,18 +316,25 @@ function chooseimage(){
 }
     //trying to post image to bucket cloud
 
-                    function uploadPhoto(imageData) {
-                             var url = 'http://ec2-34-198-155-79.compute-1.amazonaws.com/savepost.php';
-                             var params = {image: imageData};
+    function uploadPhoto(imageURI) {
+ var options = new FileUploadOptions();
+ options.fileKey = "file";
+ options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
+ options.mimeType = "image/jpeg";
+ //console.log(options.fileName);
+ var params = new Object();
+ params.value1 = "test";
+ params.value2 = "param";
+ options.params = params;
+ options.chunkedMode = false;
 
-                             // send the data
-                             $.post(url, params, function(data) {
-                                    alert("sent successfully");
-                                     // Display the selected image on send complete
-                                    // $('#image').attr('src', 'data:image/jpeg;base64,' + params['image']);
-                             });
-                             }
-
+var ft = new FileTransfer();
+ ft.upload(imageURI, "http://ec2-34-198-155-79.compute-1.amazonaws.com/savepost.php", function(result){
+     alert("submitted");
+ }, function(error){
+// console.log(JSON.stringify(error));
+ }, options);
+ }
 
     /*    function win(r) {
             alert(r.response);
