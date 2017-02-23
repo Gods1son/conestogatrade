@@ -316,16 +316,44 @@ function chooseimage(){
 }
     //trying to post image to bucket cloud
         function uploadPhoto(imageURI) {
-        var options = new FileUploadOptions();
-        options.fileKey="file";
-        options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
-        options.mimeType="image/jpeg";
+       var options = new FileUploadOptions();
+            options.fileKey="fileupload";
+            var time = new Date().getTime();
+          //  var userId = getUserId(); // In my case, Parse.User.current().id;
+            var fileName = time + ".jpg";
+            options.fileName = fileName;
+            options.mimeType ="image/jpeg";
+            options.chunkedMode = false;
 
-        var params = new Object();
+            var uri = encodeURI("https://uploadedpostimages.s3.amazonaws.com/");
 
-        options.params = params;
+            var policyDoc = {
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "Stmt1487881563000",
+            "Effect": "Allow",
+            "Action": [
+                "s3:*"
+            ],
+            "Resource": [
+                "arn:aws:s3:::uploadedpostimages"
+            ]
+        }
+    ]
+};
+            var signature = "conestoga01";
+            var params = {
+            "key": "uploads/"+fileName,
+            "AWSAccessKeyId": "AKIAIFACZ5MHBDDJNGRA",
+            "acl": "public-read",
+            "policy": policyDoc,
+            "signature": signature,
+            "Content-Type": "image/jpeg"
+            };
+            options.params = params;
 
-        var ft = new FileTransfer();
+            var ft = new FileTransfer();
         ft.upload(imageURI, encodeURI("http://uploadedpostimages.s3.amazonaws.com/"), win, fail, options);
     }
 
