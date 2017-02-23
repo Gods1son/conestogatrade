@@ -77,20 +77,35 @@ function searchhere(){
 //sending to the server for sign up
  $(document).ready(function() {
           //handling sign-in
-        /*  $("#signin").submit(function(event) {
-                        document.getElementById("post").style.display = "block";
-                        event.preventDefault();
-            //url: "http://ec2-34-198-155-79.compute-1.amazonaws.com/signintest.php",
-              var xhr = new XMLHttpRequest();
-xhr.open("POST", "http://ec2-34-198-155-79.compute-1.amazonaws.com/signintest.php", true);
-xhr.onreadystatechange = function() {
-  if (xhr.readyState == 4) {
-    // innerText does not let the attacker inject HTML elements.
-    document.getElementById("resp").innerText = xhr.responseText;
-  }
-}
-xhr.send();
-            }); */
+     /*  function submitted(){
+$("#signin").submit(function(e)
+{
+    var uname=$("#email").val();
+    var pwd=$("#password").val();
+    var postData = $("#signin").serialize();
+    var formURL = "http://ec2-34-198-155-79.compute-1.amazonaws.com/signintest.php";
+    $.ajax(
+    {
+        url : formURL,
+        type: "POST",
+        data : postData,
+        success:function(data, textStatus, jqXHR)
+        {
+            //data: return data from server
+            alert(data);
+        },
+        error: function(jqXHR, textStatus, errorThrown)
+        {
+            //if fails
+            alert(textStatus);
+        }
+    });
+    e.preventDefault(); //STOP default action
+   // e.unbind(); //unbind. to stop multiple form submit.
+
+});
+//$("#signin").submit(); //Submit  the FORM
+}*/
      //handling registration
             $("#registernew").submit(function() {
                     var email = document.getElementById("email").value;
@@ -197,6 +212,34 @@ function posted(){
 $("#postman").submit(function(e)
 {
     var postData = $("#postman").serialize();
+    //trying to post image to bucket cloud
+        function uploadPhoto(imageURI) {
+        var options = new FileUploadOptions();
+        options.fileKey="file";
+        options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+        options.mimeType="text/plain";
+
+        var params = new Object();
+
+        options.params = params;
+
+        var ft = new FileTransfer();
+        ft.upload(imageURI, encodeURI("http://uploadedpostimages.s3.amazonaws.com/"), win, fail, options);
+    }
+
+        function win(r) {
+       // console.log("Code = " + r.responseCode);
+        //console.log("Response = " + r.response);
+        //console.log("Sent = " + r.bytesSent);
+    }
+
+    function fail(error) {
+        //alert("An error has occurred: Code = " + error.code);
+        //console.log("upload error source " + error.source);
+        //console.log("upload error target " + error.target);
+    }
+    //end of upload image
+    var postData = $("#postman").serialize();
     var formURL = "http://ec2-34-198-155-79.compute-1.amazonaws.com/savepost.php";
     $.ajax(
     {
@@ -266,8 +309,6 @@ function registerman(){
 function submitted(){
 $("#signin").submit(function(e)
 {
-    var uname=$("#email").val();
-    var pwd=$("#password").val();
     var postData = $("#signin").serialize();
     var formURL = "http://ec2-34-198-155-79.compute-1.amazonaws.com/signintest.php";
     $.ajax(
@@ -278,23 +319,26 @@ $("#signin").submit(function(e)
         success:function(data, textStatus, jqXHR)
         {
             //data: return data from server
-            //$("#resp").html(data);
-            //preventDefault();
-                            if(data == "success"){
-                    alert("Login Success!!");
-                } else {
-                    alert("Invalid Login!!");
-                }
+            alert(data);
+
         },
         error: function(jqXHR, textStatus, errorThrown)
         {
             //if fails
-            $("#resp").html(textStatus);
         }
     });
     e.preventDefault(); //STOP default action
    // e.unbind(); //unbind. to stop multiple form submit.
 
 });
-$("#signin").submit(); //Submit  the FORM
+}
+
+//function to load upload
+function chooseimage(){
+        navigator.camera.getPicture(uploadPhoto,
+                                    function(message) { alert('get picture failed'); },
+                                    { quality: 50,
+                                    destinationType: navigator.camera.DestinationType.FILE_URI,
+                                    sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY }
+                                    );
 }
