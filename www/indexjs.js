@@ -1,3 +1,4 @@
+//var imageURI = "";
 function validateEmail() {
     var email = document.getElementById("email").value;
     var re = /^\s*[\w\-\+_]+(\.[\w\-\+_]+)*\@[\w\-\+_]+\.[\w\-\+_]+(\.[\w\-\+_]+)*\s*$/;
@@ -354,14 +355,15 @@ function chooseimage(){
  options.fileKey = "file";
  options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
  options.mimeType = "image/jpeg";
+ options.chunkedMode = true;
  //console.log(options.fileName);
-        var params = {};
-        params.title = document.getElementById("title").value;
-        params.price = document.getElementById("price").value;
-        params.contact = document.getElementById("contact").value;
-        params.description = document.getElementById("description").value;
-
-
+        var params = new Object();
+        params.title = $("#title").val();
+        params.price = $("#price").val();
+        params.contact = $("#contact").val();
+        params.description = $("#description").val();
+        params.imageurl = imageURI.substr(imageURI.lastIndexOf('/') + 1);
+options.params = params;
 
 var ft = new FileTransfer();
  ft.upload(imageURI, "http://ec2-34-198-155-79.compute-1.amazonaws.com/savepostmobile.php", function(result){
