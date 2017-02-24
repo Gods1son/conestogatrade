@@ -305,7 +305,7 @@ $("#signin").submit(function(e)
 });
 }
 
-//function to load upload
+/*//function to load upload
 function chooseimage(){
         navigator.camera.getPicture(uploadPhoto,
                                     function(message) { alert(message); },
@@ -313,28 +313,10 @@ function chooseimage(){
                                     destinationType: navigator.camera.DestinationType.FILE_URI,
                                     sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY }
                                     );
-}
+}*/
     //trying to post image to bucket cloud
 
-    function uploadPhoto(imageURI) {
- var options = new FileUploadOptions();
- options.fileKey = "file";
- options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
- options.mimeType = "image/jpeg";
- //console.log(options.fileName);
- var params = new Object();
- params.value1 = "test";
- params.value2 = "param";
- options.params = params;
- options.chunkedMode = false;
 
-var ft = new FileTransfer();
- ft.upload(imageURI, "http://ec2-34-198-155-79.compute-1.amazonaws.com/savepost.php", function(result){
-     alert("submitted");
- }, function(error){
-// console.log(JSON.stringify(error));
- }, options);
- }
 
     /*    function win(r) {
             alert(r.response);
@@ -350,3 +332,43 @@ var ft = new FileTransfer();
         //console.log("upload error target " + error.target);
     }
     //end of upload image*/
+
+    function getPhoto(source) {
+      // Retrieve image file location from specified source
+      navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50,
+        destinationType: destinationType.FILE_URI,
+        sourceType: source });
+    }
+
+    function onPhotoURISuccess(imageURI) {
+        // Show the selected image
+        var smallImage = document.getElementById('smallImage');
+        smallImage.src = imageURI;
+    }
+
+    function uploadPhoto() {
+        var imageURI = document.getElementById('smallImage').getAttribute("src");
+ var options = new FileUploadOptions();
+ options.fileKey = "file";
+ options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
+ options.mimeType = "image/jpeg";
+ //console.log(options.fileName);
+        var params = {};
+        params.title = document.getElementById("title").value;
+        params.price = document.getElementById("price").value;
+        params.contact = document.getElementById("contact").value;
+        params.description = document.getElementById("description").value;
+
+
+
+var ft = new FileTransfer();
+ ft.upload(imageURI, "http://ec2-34-198-155-79.compute-1.amazonaws.com/savepost.php", function(result){
+    alert("Post Submitted");
+         document.getElementById("title").value = "";
+         document.getElementById("price").value = "";
+         document.getElementById("contact").value = "";
+         document.getElementById("description").value = "";
+ }, function(error){
+// console.log(JSON.stringify(error));
+ }, options);
+ }
