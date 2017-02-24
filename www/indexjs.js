@@ -375,6 +375,7 @@ var ft = new FileTransfer();
          document.getElementById("price").value = "";
          document.getElementById("contact").value = "";
          document.getElementById("description").value = "";
+     document.getElementById("imageselected").innerHTML = "";
  }, function(error){
 // console.log(JSON.stringify(error));
  }, options);
