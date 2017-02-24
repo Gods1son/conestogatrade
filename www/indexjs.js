@@ -333,11 +333,13 @@ function chooseimage(){
     }
     //end of upload image*/
 
-    function getPhoto(source) {
+    function getPhoto() {
       // Retrieve image file location from specified source
-      navigator.camera.getPicture(onPhotoURISuccess, onFail, { quality: 50,
+      navigator.camera.getPicture(onPhotoURISuccess, function(message) {
+ alert(message);
+ }, { quality: 50,
         destinationType: destinationType.FILE_URI,
-        sourceType: source });
+        sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY });
     }
 
     function onPhotoURISuccess(imageURI) {
