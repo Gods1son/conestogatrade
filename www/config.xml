@@ -27,4 +27,5 @@
     <splash src="splash.png" />
     <preference name="SplashScreenDelay" value="0" />
     <preference name="AllowInlineMediaPlayback" value="true" />
+    <uses-permission android:name="android.permission.CAMERA" />
 </widget>

@@ -338,8 +338,8 @@ function chooseimage(){
       navigator.camera.getPicture(onPhotoURISuccess, function(message) {
  alert(message);
  }, { quality: 50,
-        destinationType: destinationType.FILE_URI,
-        sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY });
+        destinationType: Camera.DestinationType.FILE_URI,
+        sourceType: Camera.PictureSourceType.PHOTOLIBRARY });
     }
 
     function onPhotoURISuccess(imageURI) {
@@ -364,7 +364,7 @@ function chooseimage(){
 
 
 var ft = new FileTransfer();
- ft.upload(imageURI, "http://ec2-34-198-155-79.compute-1.amazonaws.com/savepost.php", function(result){
+ ft.upload(imageURI, "http://ec2-34-198-155-79.compute-1.amazonaws.com/savepostmobile.php", function(result){
     alert("Post Submitted");
          document.getElementById("title").value = "";
          document.getElementById("price").value = "";

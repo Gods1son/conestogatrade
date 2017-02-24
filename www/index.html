@@ -26,7 +26,7 @@
     <input type="button" id="post" value="Make a Post" onclick="showpost()"><br><br>
     <input type="button" id="homepagehere" value="Homepage Here" onclick="homepagehere()"><br><br>
     <input type="button" id="searchhere" value="Search Here" onclick="searchhere()"><br><br>
-    <button onclick="getPhoto();">Select Photo</button><br><br>
+    <input type="button" onclick="getPhoto()" value="Select Photo"><br><br>
 
 
 <div id="signuppage">
@@ -51,7 +51,7 @@ Password: <input type="password" name="password" id="password"><br><br>
 
 <div id="postpage">
     <h2>Fill form below to post</h2>
-    <button onclick="getPhoto();">Select Photo</button>
+    <input type="button" onclick="getPhoto()" value="Select Image">
      <form method="POST" id="postman" enctype="multipart/form-data">
     Title: <input type="text" name="title" id="title"> <span id="title_error"></span><br><br>
     Price: <input type="text" name="price" id="price"> <span id="price_error"></span><br><br>
