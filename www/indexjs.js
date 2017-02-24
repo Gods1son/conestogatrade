@@ -345,11 +345,13 @@ function chooseimage(){
 
     function onPhotoURISuccess(imageURI) {
         // Show the selected image
+        document.getElementById("imageselected").innerHTML = "Image selected";
         var smallImage = document.getElementById('smallImage');
         smallImage.src = imageURI;
     }
 
     function uploadPhoto() {
+        document.getElementById("loading").innerHTML = "Loading...pls wait";
         var imageURI = document.getElementById('smallImage').getAttribute("src");
  var options = new FileUploadOptions();
  options.fileKey = "file";
@@ -368,6 +370,7 @@ options.params = params;
 var ft = new FileTransfer();
  ft.upload(imageURI, "http://ec2-34-198-155-79.compute-1.amazonaws.com/savepostmobile.php", function(result){
     alert("Post Submitted");
+         document.getElementById("loading").innerHTML = "";
          document.getElementById("title").value = "";
          document.getElementById("price").value = "";
          document.getElementById("contact").value = "";
