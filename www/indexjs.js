@@ -77,7 +77,7 @@ function searchhere(){
 
 //sending to the server for sign up
  $(document).ready(function() {
-
+/*
      //handling registration
             $("#registernew").submit(function() {
                     var email = document.getElementById("email").value;
@@ -146,8 +146,23 @@ function searchhere(){
                         );
                         return false;
                         }
-                    });
-                });
+                    });*/
+               //check if user is signed in
+                var checkloggedin = localStorage.getItem('email');
+                var checklogstatus = localStorage.getItem('login');
+                if (checkloggedin != "" && checklogstatus == "true"){
+                    document.getElementById("post").style.display = "block";
+                    document.getElementById("anotherspace").style.display = "block";
+                } else {document.getElementById("post").style.display = "none";
+                       document.getElementById("post").style.display = "none";}
+ });
+
+//trying to logout
+function logout(){
+    localStorage.setItem('login', 'false');
+    location.reload();
+}
+
 
 //trying latest sign-in
 function signingin(){
