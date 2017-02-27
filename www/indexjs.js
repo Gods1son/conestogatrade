@@ -17,30 +17,30 @@ function validateEmail() {
 
 //validate post
 function validate(){
-    var title = document.getElementById("title");
-    var price = document.getElementById("price");
-    var contact = document.getElementById("contact");
-    var description = document.getElementById("description");
+    var title = document.getElementById("title").value;
+    var price = document.getElementById("price").value;
+    var contact = document.getElementById("contact").value;
+    var description = document.getElementById("description").value;
     var form = document.getElementById("postform");
     var qrcode = document.getElementById("code");
 
-    if (title.value == ""){
+    if (title == ""){
         document.getElementById("title_error").innerHTML = "Please enter post title";
         return false;
-    }else if(title.value !== ""){document.getElementById("title_error").innerHTML=""}
-    if (price.value == ""){
+    }else if(title !== ""){document.getElementById("title_error").innerHTML=""}
+    if (price == ""){
         document.getElementById("price_error").innerHTML = "Please enter desired selling price";
         return false;
-    }else if(price.value == !""){document.getElementById("price_error").innerHTML=""}
-    if (contact.value == ""){
+    }else if(price == !""){document.getElementById("price_error").innerHTML=""}
+    if (contact == ""){
         document.getElementById("contact_error").innerHTML = "Please enter your contact";
         return false;
-    }else if(contact.value !== ""){document.getElementById("contact_error").innerHTML=""}
-    if (description.value == ""){
+    }else if(contact !== ""){document.getElementById("contact_error").innerHTML=""}
+    if (description == ""){
         document.getElementById("description_error").innerHTML = "Please describe your item a lil bit";
         return false;
-    }else if(description.value !== ""){document.getElementById("description_error").innerHTML=""}
-    else{ }
+    }else if(description !== ""){document.getElementById("description_error").innerHTML=""}
+    else{ return true};
 }
 //end of post
 
@@ -288,40 +288,19 @@ function registerman(){
 
     function uploadPhoto() {
         //validating the form
-                    var title = document.getElementById("title");
-                    var price = document.getElementById("price");
-                    var contact = document.getElementById("contact");
-                    var description = document.getElementById("description");
-                    var form = document.getElementById("postform");
-                    var qrcode = document.getElementById("code");
+                    validate();
                     var postedby = localStorage.getItem('email');
 
-                    if (title.value == ""){
-                    document.getElementById("title_error").innerHTML = "Please enter post title";
-                    return false;
-                    }else if(title.value !== ""){document.getElementById("title_error").innerHTML=""}
-                    if (price.value == ""){
-                    document.getElementById("price_error").innerHTML = "Please enter desired selling price";
-                    return false;
-                    }else if(price.value == !""){document.getElementById("price_error").innerHTML=""}
-                    if (contact.value == ""){
-                    document.getElementById("contact_error").innerHTML = "Please enter your contact";
-                    return false;
-                    }else if(contact.value !== ""){document.getElementById("contact_error").innerHTML=""}
-                    if (description.value == ""){
-                    document.getElementById("description_error").innerHTML = "Please describe your item a lil bit";
-                    return false;
-                    }else if(description.value !== ""){document.getElementById("description_error").innerHTML=""}
-
-        else{
-                 if(imageURI.length <= 0){
+                 if(!imageURI){
                      document.getElementById("loading").innerHTML = "Loading...pls wait";
                      document.getElementById("submitgif").style.display = "block";
-                     var dataString="postedby="+postedby+"title="+title+"&price="+price+"&contact="+contact+"&description="+description;
+                 //
+                     var dataString2 = { 'postedby' : postedby, 'title' : $('#title').val(), 'price' : $('#price').val(), 'contact' : $('#contact').val(), 'description' : $('#description').val() }
                      $.ajax({
 type: "POST",
 url: "http://ec2-34-198-155-79.compute-1.amazonaws.com/savepostmobilenophoto.php",
-data: dataString,
+dataType: "json",
+data: dataString2,
 crossDomain: true,
 cache: false,
 success: function(data){
@@ -382,7 +361,6 @@ var ft = new FileTransfer();
 // console.log(JSON.stringify(error));
  }, options);
                     }
-            }
  }
 
 
