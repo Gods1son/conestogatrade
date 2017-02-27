@@ -77,36 +77,7 @@ function searchhere(){
 
 //sending to the server for sign up
  $(document).ready(function() {
-          //handling sign-in
-     /*  function submitted(){
-$("#signin").submit(function(e)
-{
-    var uname=$("#email").val();
-    var pwd=$("#password").val();
-    var postData = $("#signin").serialize();
-    var formURL = "http://ec2-34-198-155-79.compute-1.amazonaws.com/signintest.php";
-    $.ajax(
-    {
-        url : formURL,
-        type: "POST",
-        data : postData,
-        success:function(data, textStatus, jqXHR)
-        {
-            //data: return data from server
-            alert(data);
-        },
-        error: function(jqXHR, textStatus, errorThrown)
-        {
-            //if fails
-            alert(textStatus);
-        }
-    });
-    e.preventDefault(); //STOP default action
-   // e.unbind(); //unbind. to stop multiple form submit.
 
-});
-//$("#signin").submit(); //Submit  the FORM
-}*/
      //handling registration
             $("#registernew").submit(function() {
                     var email = document.getElementById("email").value;
@@ -178,6 +149,39 @@ $("#signin").submit(function(e)
                     });
                 });
 
+//trying latest sign-in
+function signingin(){
+var email=$("#signemail").val();
+var password=$("#signpassword").val();
+var dataString="email="+email+"&password="+password+"&login=";
+if($.trim(email).length>0 & $.trim(password).length>0)
+{   $.ajax({
+    type: "POST",
+    url: "http://ec2-34-198-155-79.compute-1.amazonaws.com/signintestmobile.php",
+    data: dataString,
+    crossDomain: true,
+    cache: false,
+    success: function(data){
+        if(data=="success")
+            {
+               alert("You are logged in");
+                document.getElementById("post").style.display = "block";
+                document.getElementById("anotherspace").style.display = "block";
+                document.getElementById("signinpage").style.display = "none";
+                localStorage.setItem('login', 'true');
+                localStorage.setItem('email', email);
+                //localStorage.email=email;
+               // window.location.href = "index.html";
+            }
+else { alert("Login error");
+     // $("#login").html('Login');
+        }
+    }
+});
+}return false;
+};
+//end of new sign in test
+
 //opening homepage
 function openhomepage(){
     window.open("http://ec2-34-198-155-79.compute-1.amazonaws.com/homepage.php", '_blank', 'location=yes')
@@ -194,20 +198,6 @@ function openscanner(){
           alert("Scanning failed: " + error);
       });
 }
-       /*   $("#signin").submit(function(event) {
-                        document.getElementById("post").style.display = "block";
-                        event.preventDefault();
-            //url: "http://ec2-34-198-155-79.compute-1.amazonaws.com/signintest.php",
-              var xhr = new XMLHttpRequest();
-xhr.open("POST", "http://ec2-34-198-155-79.compute-1.amazonaws.com/signintest.php", true);
-xhr.onreadystatechange = function() {
-  if (xhr.readyState == 4) {
-    // innerText does not let the attacker inject HTML elements.
-    document.getElementById("resp").innerText = xhr.responseText;
-  }
-}
-xhr.send();
-            }); */
 
 function posted(){
 $("#postman").submit(function(e)
@@ -279,61 +269,7 @@ function registerman(){
     }
 }
 
-function submitted(){
-$("#signin").submit(function(e)
-{
-    var postData = $("#signin").serialize();
-    var formURL = "http://ec2-34-198-155-79.compute-1.amazonaws.com/signintest.php";
-    $.ajax(
-    {
-        url : formURL,
-        type: "POST",
-        data : postData,
-        success:function(data, textStatus, jqXHR)
-        {
-            //data: return data from server
-            alert(data);
-
-        },
-        error: function(jqXHR, textStatus, errorThrown)
-        {
-            //if fails
-        }
-    });
-    e.preventDefault(); //STOP default action
-   // e.unbind(); //unbind. to stop multiple form submit.
-
-});
-}
-
-/*//function to load upload
-function chooseimage(){
-        navigator.camera.getPicture(uploadPhoto,
-                                    function(message) { alert(message); },
-                                    { quality: 50,
-                                    destinationType: navigator.camera.DestinationType.FILE_URI,
-                                    sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY }
-                                    );
-}*/
-    //trying to post image to bucket cloud
-
-
-
-    /*    function win(r) {
-            alert(r.response);
-       // console.log("Code = " + r.responseCode);
-        //console.log("Response = " + r.response);
-        //console.log("Sent = " + r.bytesSent);
-    }
-
-    function fail(error) {
-        alert("An error has occurred: Code = " = error.code);
-        //alert("An error has occurred: Code = " + error.code);
-        //console.log("upload error source " + error.source);
-        //console.log("upload error target " + error.target);
-    }
-    //end of upload image*/
-
+//selecting picture to submit
     function getPhoto() {
       // Retrieve image file location from specified source
       navigator.camera.getPicture(onPhotoURISuccess, function(message) {
@@ -351,16 +287,80 @@ function chooseimage(){
     }
 
     function uploadPhoto() {
+        //validating the form
+                    var title = document.getElementById("title");
+                    var price = document.getElementById("price");
+                    var contact = document.getElementById("contact");
+                    var description = document.getElementById("description");
+                    var form = document.getElementById("postform");
+                    var qrcode = document.getElementById("code");
+                    var postedby = localStorage.getItem('email');
+
+                    if (title.value == ""){
+                    document.getElementById("title_error").innerHTML = "Please enter post title";
+                    return false;
+                    }else if(title.value !== ""){document.getElementById("title_error").innerHTML=""}
+                    if (price.value == ""){
+                    document.getElementById("price_error").innerHTML = "Please enter desired selling price";
+                    return false;
+                    }else if(price.value == !""){document.getElementById("price_error").innerHTML=""}
+                    if (contact.value == ""){
+                    document.getElementById("contact_error").innerHTML = "Please enter your contact";
+                    return false;
+                    }else if(contact.value !== ""){document.getElementById("contact_error").innerHTML=""}
+                    if (description.value == ""){
+                    document.getElementById("description_error").innerHTML = "Please describe your item a lil bit";
+                    return false;
+                    }else if(description.value !== ""){document.getElementById("description_error").innerHTML=""}
+
+        else{
+                 if(imageURI.length <= 0){
+                     document.getElementById("loading").innerHTML = "Loading...pls wait";
+                     document.getElementById("submitgif").style.display = "block";
+                     var dataString="postedby="+postedby+"title="+title+"&price="+price+"&contact="+contact+"&description="+description;
+                     $.ajax({
+type: "POST",
+url: "http://ec2-34-198-155-79.compute-1.amazonaws.com/savepostmobilenophoto.php",
+data: dataString,
+crossDomain: true,
+cache: false,
+success: function(data){
+if(data=="success")
+{
+         document.getElementById("submitgif").style.display = "none";
+alert("Posted successfully");
+         document.getElementById("loading").innerHTML = "";
+         document.getElementById("title").value = "";
+         document.getElementById("price").value = "";
+         document.getElementById("contact").value = "";
+         document.getElementById("description").value = "";
+     document.getElementById("imageselected").innerHTML = "";
+}
+else {
+         document.getElementById("submitgif").style.display = "none";
+alert("Posting failed");
+         document.getElementById("loading").innerHTML = "";
+         document.getElementById("title").value = "";
+         document.getElementById("price").value = "";
+         document.getElementById("contact").value = "";
+         document.getElementById("description").value = "";
+     document.getElementById("imageselected").innerHTML = "";
+        }
+    }
+});
+    }else{
+
         document.getElementById("loading").innerHTML = "Loading...pls wait";
         document.getElementById("submitgif").style.display = "block";
         var imageURI = document.getElementById('smallImage').getAttribute("src");
- var options = new FileUploadOptions();
- options.fileKey = "file";
- options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
- options.mimeType = "image/jpeg";
- options.chunkedMode = true;
- //console.log(options.fileName);
+        var options = new FileUploadOptions();
+        options.fileKey = "file";
+        options.fileName = imageURI.substr(imageURI.lastIndexOf('/') + 1);
+        options.mimeType = "image/jpeg";
+        options.chunkedMode = true;
+        //console.log(options.fileName);
         var params = new Object();
+        params.postedby = postedby;
         params.title = $("#title").val();
         params.price = $("#price").val();
         params.contact = $("#contact").val();
@@ -381,4 +381,8 @@ var ft = new FileTransfer();
  }, function(error){
 // console.log(JSON.stringify(error));
  }, options);
+                    }
+            }
  }
+
+

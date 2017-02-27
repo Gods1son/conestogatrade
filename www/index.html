@@ -23,7 +23,8 @@
     <input type="button" id="signin" value="Sign In" onclick="showsignin()"><br><br>
     <input type="button" id="homepage" value="Go to homepage" onclick="openhomepage()"><br><br>
     <input type="button" id="scan" value="Scan Barcode" onclick="openscanner()"><br><br>
-    <input type="button" id="post" value="Make a Post" onclick="showpost()"><br><br>
+    <input type="button" id="post" value="Make a Post" onclick="showpost()" style="display:none;">
+    <span style="display:none;" id="anotherspace"><br></span>
     <input type="button" id="homepagehere" value="Homepage Here" onclick="homepagehere()"><br><br>
     <input type="button" id="searchhere" value="Search Here" onclick="searchhere()"><br><br>
 
@@ -41,11 +42,9 @@ Enter Password Again: <input type="password" name="passwordtwo"><br><br>
 
     <div id="signinpage">
         <h2>Sign in below</h2>
-    <form id="signin" method="post" onsubmit="submitted()">
-Email: <input type="text" id="email" name="email" required><br><br>
-Password: <input type="password" name="password" id="password"><br><br>
-<input type="submit">
-    </form>
+        <input id="signemail" type="email" placeholder="email@domain.com" /><br><br>
+        <input id="signpassword" type="password" placeholder="password" /><br><br>
+        <button id="login" onclick="signingin()">Login</button>
     </div>
 
 <div id="postpage">
